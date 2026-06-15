@@ -1,6 +1,6 @@
 [project]
 name = "macbook-ai"
-version = "0.1.5"
+version = "0.1.6"
 description = "Python interface to macOS AI capabilities"
 readme = "README.md"
 license = { text = "MIT" }

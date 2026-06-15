@@ -119,22 +119,27 @@ uv run pytest tests/ -v
 
 ### Publishing to PyPI
 
-This project uses GitHub Actions for automated publishing. To release a new version:
+This project uses GitHub Actions for **automatic publishing with auto-versioning**. 
 
-1. **Update version** in `pyproject.toml`
-2. **Commit and push to main**:
-   ```bash
-   git add pyproject.toml
-   git commit -m "Bump version to 0.1.6"
-   git push origin main
-   ```
+**Just commit and push to main** - the version will be automatically incremented:
+
+```bash
+git add .
+git commit -m "Add new feature"
+git push origin main
+```
 
 The pipeline will automatically:
 - Run tests on Python 3.10, 3.11, and 3.12
+- Auto-increment the patch version (e.g., 0.1.6 → 0.1.7)
 - Build the package
 - Publish to PyPI if all tests pass
+- Commit the version bump back to the repo
 
-**Important**: Make sure to bump the version number in `pyproject.toml` before each push, as PyPI won't accept duplicate versions.
+**Manual version bumps**: If you need to bump major or minor versions, edit `pyproject.toml` manually:
+- Major: `0.1.6` → `1.0.0` (breaking changes)
+- Minor: `0.1.6` → `0.2.0` (new features)
+- Patch: automatic on every push
 
 See [PUBLISHING.md](PUBLISHING.md) for detailed setup instructions and troubleshooting.
 
