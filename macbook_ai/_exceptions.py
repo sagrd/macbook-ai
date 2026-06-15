@@ -15,3 +15,11 @@ class AuthorizationError(MacAIError):
 
 class RecognitionError(MacAIError):
     """Raised when speech recognition fails."""
+
+
+class SynthesisError(MacAIError):
+    """Raised when speech synthesis fails."""
+
+
+class InferenceError(MacAIError):
+    """Raised when on-device LLM inference fails."""

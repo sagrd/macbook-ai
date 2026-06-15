@@ -23,6 +23,7 @@ Homepage = "https://sagrd.github.io/"
 
 [project.optional-dependencies]
 tts = ["pyobjc-framework-AVFoundation>=10.3"]
+# foundation extra will be added once pyobjc-framework-FoundationModels is on PyPI (macOS 26+)
 all = ["macbook-ai[tts]"]
 
 [dependency-groups]
@@ -34,6 +35,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["macbook_ai"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
 
 [tool.uv]
 package = true
