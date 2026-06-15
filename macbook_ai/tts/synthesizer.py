@@ -185,11 +185,26 @@ class SpeechSynthesizer:
 
         url = Foundation.NSURL.fileURLWithPath_(str(output_path))
         audio_format = buffers[0].format()
-        audio_file = AVAudioFile.alloc().initForWriting_settings_error_(
+        result = AVAudioFile.alloc().initForWriting_settings_error_(
             url, audio_format.settings(), None
         )
-        if audio_file is None:
-            raise SynthesisError(f"Could not create audio file at {output_path}")
+        
+        # PyObjC returns (object, error) tuple for error: parameter
+        if isinstance(result, tuple):
+            audio_file, error = result
+        else:
+            audio_file = result
+            error = None
+            
+        if audio_file is None or error is not None:
+            error_msg = str(error) if error else "Unknown error"
+            raise SynthesisError(f"Could not create audio file at {output_path}: {error_msg}")
 
         for buf in buffers:
-            audio_file.writeFromBuffer_error_(buf, None)
+            result = audio_file.writeFromBuffer_error_(buf, None)
+            # PyObjC returns (success, error) tuple for error: parameter
+            if isinstance(result, tuple):
+                success, error = result
+                if not success or error is not None:
+                    error_msg = str(error) if error else "Unknown error"
+                    raise SynthesisError(f"Could not write audio buffer: {error_msg}")

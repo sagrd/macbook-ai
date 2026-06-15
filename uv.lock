@@ -43,19 +43,18 @@ wheels = [
 
 [[package]]
 name = "macbook-ai"
-version = "0.1.5"
+version = "0.1.8"
 source = { editable = "." }
 dependencies = [
+    { name = "pyobjc-framework-avfoundation" },
     { name = "pyobjc-framework-cocoa" },
     { name = "pyobjc-framework-speech" },
 ]
 
 [package.optional-dependencies]
-all = [
-    { name = "pyobjc-framework-avfoundation" },
-]
-tts = [
-    { name = "pyobjc-framework-avfoundation" },
+dev = [
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
 ]
 
 [package.dev-dependencies]
@@ -66,12 +65,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "macbook-ai", extras = ["tts"], marker = "extra == 'all'" },
-    { name = "pyobjc-framework-avfoundation", marker = "extra == 'tts'", specifier = ">=10.3" },
+    { name = "pyobjc-framework-avfoundation", specifier = ">=10.3" },
     { name = "pyobjc-framework-cocoa", specifier = ">=10.3" },
     { name = "pyobjc-framework-speech", specifier = ">=10.3" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.24" },
 ]
-provides-extras = ["tts", "all"]
+provides-extras = ["dev"]
 
 [package.metadata.requires-dev]
 dev = [

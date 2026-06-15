@@ -211,36 +211,6 @@ print(response)
 uv run pytest tests/ -v
 ```
 
-### Publishing to PyPI
-
-This project uses GitHub Actions for **secure, tag-based publishing**.
-
-**To publish a new version:**
-
-1. **Update version** in `pyproject.toml`:
-   ```bash
-   # Edit pyproject.toml, bump version to 0.1.7
-   git add pyproject.toml
-   git commit -m "Bump version to 0.1.7"
-   git push origin main
-   ```
-
-2. **Create and push a release tag**:
-   ```bash
-   git tag v0.1.7
-   git push origin v0.1.7
-   ```
-
-The pipeline will automatically:
-- Run tests on Python 3.10, 3.11, and 3.12
-- Verify the tag matches the version in `pyproject.toml`
-- Build the package
-- Publish to PyPI if all checks pass
-
-**Security**: Only tagged releases are published. This prevents accidental or malicious publishes from regular commits.
-
-See [PUBLISHING.md](PUBLISHING.md) for detailed setup and [SECURITY.md](SECURITY.md) for security best practices.
-
 ## License
 
 MIT
