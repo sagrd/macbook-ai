@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - main
-    tags:
-      - 'v*'
   pull_request:
     branches:
       - main
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   test:
@@ -32,6 +33,7 @@ jobs:
     
     - name: Install dependencies
       run: |
+        uv cache clean
         uv sync --all-extras --dev
     
     - name: Run tests
@@ -46,6 +48,11 @@ jobs:
     
     permissions:
       id-token: write  # Required for trusted publishing
+      contents: read
+    
+    environment:
+      name: pypi
+      url: https://pypi.org/p/macbook-ai
     
     steps:
     - uses: actions/checkout@v4
@@ -66,5 +73,3 @@ jobs:
     
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
