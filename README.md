@@ -109,6 +109,38 @@ except TimeoutError:
 | `macbook-ai.tts` | Text-to-speech via `AVSpeechSynthesizer` | Coming soon |
 | `macbook-ai.foundation` | On-device LLM via Apple Foundation Models (macOS 26+) | Coming soon |
 
+## Development
+
+### Running Tests
+
+```bash
+uv run pytest tests/ -v
+```
+
+### Publishing to PyPI
+
+This project uses GitHub Actions for automated publishing. To release a new version:
+
+1. **Update version** in `pyproject.toml`
+2. **Commit and push**:
+   ```bash
+   git add pyproject.toml
+   git commit -m "Bump version to 0.1.6"
+   git push origin main
+   ```
+3. **Create and push tag**:
+   ```bash
+   git tag v0.1.6
+   git push origin v0.1.6
+   ```
+
+The pipeline will automatically:
+- Run tests on Python 3.10, 3.11, and 3.12
+- Build the package
+- Publish to PyPI if all tests pass
+
+See [PUBLISHING.md](PUBLISHING.md) for detailed setup instructions and troubleshooting.
+
 ## License
 
 MIT
