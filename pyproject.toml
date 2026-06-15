@@ -16,15 +16,15 @@ requires-python = ">=3.10"
 dependencies = [
     "pyobjc-framework-Cocoa>=10.3",
     "pyobjc-framework-Speech>=10.3",
+    "pyobjc-framework-AVFoundation>=10.3",
 ]
 
 [project.urls]
 Homepage = "https://sagrd.github.io/"
 
 [project.optional-dependencies]
-tts = ["pyobjc-framework-AVFoundation>=10.3"]
-# foundation extra will be added once pyobjc-framework-FoundationModels is on PyPI (macOS 26+)
-all = ["macbook-ai[tts]"]
+# foundation extra will be added once pyobjc-framework-FoundationModels is on PyPI (macOS 15.6+)
+dev = ["pytest>=8", "pytest-asyncio>=0.24"]
 
 [dependency-groups]
 dev = ["pytest>=8", "pytest-asyncio>=0.24"]
