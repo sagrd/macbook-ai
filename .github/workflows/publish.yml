@@ -40,7 +40,7 @@ jobs:
 
   publish:
     needs: test
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     # Publish on every push to main branch
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
@@ -58,7 +58,7 @@ jobs:
     - name: Install uv
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
-        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
     
     - name: Build package
       run: |
