@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://sagrd.github.io/"
+Homepage = "https://github.com/sagrd/macbook-ai/"
 
 [project.optional-dependencies]
 # foundation extra will be added once pyobjc-framework-FoundationModels is on PyPI (macOS 15.6+)
