@@ -122,22 +122,19 @@ uv run pytest tests/ -v
 This project uses GitHub Actions for automated publishing. To release a new version:
 
 1. **Update version** in `pyproject.toml`
-2. **Commit and push**:
+2. **Commit and push to main**:
    ```bash
    git add pyproject.toml
    git commit -m "Bump version to 0.1.6"
    git push origin main
-   ```
-3. **Create and push tag**:
-   ```bash
-   git tag v0.1.6
-   git push origin v0.1.6
    ```
 
 The pipeline will automatically:
 - Run tests on Python 3.10, 3.11, and 3.12
 - Build the package
 - Publish to PyPI if all tests pass
+
+**Important**: Make sure to bump the version number in `pyproject.toml` before each push, as PyPI won't accept duplicate versions.
 
 See [PUBLISHING.md](PUBLISHING.md) for detailed setup instructions and troubleshooting.
 

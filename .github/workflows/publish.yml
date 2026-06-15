@@ -41,8 +41,8 @@ jobs:
   publish:
     needs: test
     runs-on: macos-latest
-    # Only publish on tags starting with 'v' (e.g., v0.1.6)
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    # Publish on every push to main branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     
     permissions:
       id-token: write  # Required for trusted publishing
